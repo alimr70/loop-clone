@@ -1,4 +1,3 @@
-import React from 'react';
 import DivBody from './components/DivBody';
 import Header from "./components/Header";
 

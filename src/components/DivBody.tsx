@@ -1,10 +1,12 @@
+import { DayCell, WorkDayCell } from "./utils";
+
 const DivBody = () => {
   return (
     <div className="flex justify-center text-gray-300 font-semibold">
       <div className="w-full max-w-xl h-full max-h-screen bg-gray-800 grid grid-cols-12">
         {/* Habits Col / Left Section */}
         <div className="col-span-4">
-          <div className="h-12 my-1 bg-gray-700 flex justify-center items-center">
+          <div className="h-12 my-1 bg-gray-800 flex justify-center items-center">
             &nbsp;
           </div>
           <div className="h-12 my-1 bg-gray-700 flex justify-center items-center">
@@ -14,7 +16,7 @@ const DivBody = () => {
             ورد الصلاة على النبي
           </div>
           <div className="h-12 my-1 bg-gray-700 flex justify-center items-center">
-            ورد استغفار
+            ورد التوحيد
           </div>
         </div>
 
@@ -23,93 +25,56 @@ const DivBody = () => {
           <div className="grid grid-rows-6  overflow-auto">
             {/* Dates row */}
             <div className="row-span-1">
-              <div className="w-full h-12 my-1 bg-gray-700 flex">
-                <span className="w-12 text-center">
-                  MON
-                  <br />
-                  16
-                </span>
-                <span className="w-12 text-center">
-                  SUN
-                  <br />
-                  15
-                </span>
-                <span className="w-12 text-center">
-                  SAT
-                  <br />
-                  14
-                </span>
-                <span className="w-12 text-center">
-                  FRI
-                  <br />
-                  13
-                </span>
-                <span className="w-12 text-center">
-                  THU
-                  <br />
-                  12
-                </span>
-                <span className="w-12 text-center">
-                  WED
-                  <br />
-                  11
-                </span>
-                <span className="w-12 text-center">
-                  TUE
-                  <br />
-                  10
-                </span>
-                <span className="w-12 text-center">
-                  MON
-                  <br />9
-                </span>
-                <span className="w-12 text-center">
-                  SUN
-                  <br />8
-                </span>
-                <span className="w-12 text-center">
-                  SAT
-                  <br />7
-                </span>
+              <div className="w-full h-12 my-1 bg-gray-800 flex">
+                <DayCell day="MON" date="16" />
+                <DayCell day="SUN" date="15" />
+                <DayCell day="SAT" date="14" />
+                <DayCell day="FRI" date="13" />
+                <DayCell day="THU" date="12" />
+                <DayCell day="WED" date="11" />
+                <DayCell day="TUE" date="10" />
+                <DayCell day="MON" date="9" />
+                <DayCell day="SUN" date="8" />
+                <DayCell day="SAT" date="7" />
               </div>
 
               <div className="w-full h-12 my-1 bg-gray-700 flex">
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
               </div>
 
               <div className="w-full h-12 my-1 bg-gray-700 flex">
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
               </div>
 
               <div className="w-full h-12 my-1 bg-gray-700 flex">
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
-                <span className="w-12 flex items-center justify-center">x</span>
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={true} />
+                <WorkDayCell done={false} />
+                <WorkDayCell done={false} />
               </div>
             </div>
 
