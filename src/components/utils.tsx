@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface dayCellProps {
   day: string;
   date: string;
@@ -18,9 +20,15 @@ interface workDayCellProps {
 }
 
 export const WorkDayCell: React.FC<workDayCellProps> = ({ done }) => {
+  const [isDone, setIsDone] = useState(done);
+
   return (
-    <span className="w-12 flex items-center justify-center">
-      {done ? (
+    <span
+      className="w-12 flex items-center justify-center cursor-pointer"
+      onClick={() => {
+        setIsDone(!isDone);
+      }}>
+      {isDone ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
