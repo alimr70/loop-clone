@@ -1,25 +1,25 @@
 import { useState } from "react";
+import { DayCellProps, WorkDayCellProps, HabitTitleProps } from "../interfaces";
 
-interface dayCellProps {
-  day: string;
-  date: string;
-}
-
-export const DayCell: React.FC<dayCellProps> = ({ day, date }) => {
+export const DayCell: React.FC<DayCellProps> = ({ date }) => {
   return (
     <span className="w-12 text-center">
-      {day}
+      {date.split(" ")[0]}
       <br />
-      {date}
+      {date.split(" ")[2]}
     </span>
   );
 };
 
-interface workDayCellProps {
-  done: boolean;
-}
+export const HabitTitle: React.FC<HabitTitleProps> = ({ title }) => {
+  return (
+    <div className="h-12 my-1 bg-gray-700 flex justify-center items-center">
+      {title}
+    </div>
+  );
+};
 
-export const WorkDayCell: React.FC<workDayCellProps> = ({ done }) => {
+export const WorkDayCell: React.FC<WorkDayCellProps> = ({ done }) => {
   const [isDone, setIsDone] = useState(done);
 
   return (

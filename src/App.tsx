@@ -1,12 +1,9 @@
-import MainLayout from "./components/MainLayout";
-import Header from "./components/Header";
+import MainPage from "./components/MainPage/MainPage";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-
-      <MainLayout />
+      <MainPage />
     </div>
   );
 }

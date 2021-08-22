@@ -1,4 +1,4 @@
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
         <nav className="flex justify-center">
