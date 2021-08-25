@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
+import * as actions from "../context/actions";
+import { DataStore } from "../context/DataContext/DataContext";
 import { DayCellProps, WorkDayCellProps, HabitTitleProps } from "../interfaces";
 
 export const DayCell: React.FC<DayCellProps> = ({ date }) => {
@@ -19,16 +21,16 @@ export const HabitTitle: React.FC<HabitTitleProps> = ({ title }) => {
   );
 };
 
-export const WorkDayCell: React.FC<WorkDayCellProps> = ({ done }) => {
-  const [isDone, setIsDone] = useState(done);
+export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, done }) => {
+  const {dispatch} = useContext(DataStore);
 
   return (
     <span
       className="w-12 flex items-center justify-center cursor-pointer"
       onClick={() => {
-        setIsDone(!isDone);
+        dispatch(actions.checkWorkDayCell(habitId,cellDate));
       }}>
-      {isDone ? (
+      {done ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -55,4 +57,59 @@ export const WorkDayCell: React.FC<WorkDayCellProps> = ({ done }) => {
       )}
     </span>
   );
+};
+
+export const sortDates = (dates: string[]) => {
+  let datesTimes = dates.map((el) => {
+    return new Date(el).getTime();
+  });
+
+  let sortedTimes = datesTimes.sort((date1, date2) => {
+    return date1 > date2 ? -1 : date2 > date1 ? 1 : 0;
+  });
+
+  let sortedDates = sortedTimes.map((el) => {
+    return new Date(el).toDateString();
+  });
+
+  return sortedDates;
+};
+
+export const generateDays = (startDate: number) => {
+  let daysArr: number[] = [];
+
+  let todayDate = new Date().setHours(0, 0, 0, 0);
+
+  const createDay = (lastDate: number): "" => {
+    daysArr.push(lastDate);
+    return lastDate === startDate ? "" : createDay(lastDate - 86400000);
+  };
+
+  createDay(todayDate);
+
+  let dates = daysArr.map((el) => new Date(el).toDateString());
+
+  return dates;
+};
+
+export const generate30Days = (startDate: number) => {
+  let daysArr: number[] = [];
+
+  let todayDate = new Date().setHours(0, 0, 0, 0);
+  if (startDate === todayDate) {
+    daysArr.push(startDate);
+  }
+  // startDate === todayDate ? daysArr.push(startDate) : "";
+
+  for (let i = 0; i <= 30; i++) {
+    if (daysArr.length) {
+      daysArr.push(daysArr[daysArr.length - 1] - 86400000);
+    } else {
+      daysArr.push(startDate - 86400000);
+    }
+  }
+
+  let dates = daysArr.map((el) => new Date(el).toDateString());
+
+  return dates;
 };

@@ -1,4 +1,4 @@
-export const checkWorkDayCell = (habitId: string, date: number) => {
+export const checkWorkDayCell = (habitId: string, date: string) => {
   return {
     type: "checkWorkDayCell",
     payload: { habitId, date },

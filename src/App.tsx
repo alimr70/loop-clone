@@ -1,10 +1,13 @@
 import MainPage from "./components/MainPage/MainPage";
+import { DataContext } from "./context/DataContext/DataContext";
 
 function App() {
   return (
-    <div className="App">
-      <MainPage />
-    </div>
+    <DataContext>
+      <div className="App">
+        <MainPage />
+      </div>
+    </DataContext>
   );
 }
 

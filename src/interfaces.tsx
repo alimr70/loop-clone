@@ -1,26 +1,36 @@
 export interface WorkDayCellProps {
+  habitId: string;
+  cellDate: string;
   done: boolean;
-  date: string;
 }
 
-export interface HabitTitleProps{
+export interface HabitTitleProps {
   title: string;
+  habitId: string;
 }
 
 export interface DayCellProps {
   date: string;
 }
 
-export type DataStateType = {
+export interface HabitInterface {
   id: string;
   title: string;
   doneDates: string[];
-}[];
+}
+
+export type DataStateType = {
+  habitsData: {
+    id: string;
+    title: string;
+    doneDates: string[];
+  }[];
+};
 
 export interface ActionType {
   type: string;
   payload: {
-    habitId?: string,
-    date?: string,
+    habitId?: string;
+    date?: string;
   };
 }

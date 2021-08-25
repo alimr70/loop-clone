@@ -1,14 +1,15 @@
 import { ActionType, DataStateType } from "../../interfaces";
 
 const checkWorkDayCell = (state: DataStateType, habitId: string, cellDate: string) => {
-  const foundHabit = state.find(habit => habit.id === habitId);
-  let newState = state.filter(habit => habit.id !== foundHabit!.id);
+  const foundHabit = state.habitsData.find(habit => habit.id === habitId);
+  let newHabitsData = state.habitsData.filter(habit => habit.id !== foundHabit!.id);
 
   foundHabit!.doneDates.find(date => date === cellDate)
-    ?foundHabit!.doneDates.filter(date => date !== cellDate)
+    ?foundHabit!.doneDates.splice(foundHabit!.doneDates.indexOf(cellDate),1)
     :foundHabit!.doneDates.push(cellDate);
 
-  newState.push(foundHabit!);
+  newHabitsData.push(foundHabit!);
+  let newState = {...state, habitsdata:newHabitsData}
   return newState;
 }
 
