@@ -28,7 +28,9 @@ export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, don
     <span
       className="w-12 flex items-center justify-center cursor-pointer"
       onClick={() => {
-        dispatch(actions.checkWorkDayCell(habitId,cellDate));
+        done
+          ?dispatch(actions.unCheckWorkDayCell(habitId,cellDate))
+          :dispatch(actions.checkWorkDayCell(habitId,cellDate));
       }}>
       {done ? (
         <svg
