@@ -4,7 +4,7 @@ import { DataContext } from "./context/DataContext/DataContext";
 function App() {
   return (
     <DataContext>
-      <div className="App">
+      <div className="App mx-1">
         <MainPage />
       </div>
     </DataContext>
