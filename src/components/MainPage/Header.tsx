@@ -3,7 +3,7 @@ import { UiStore } from "../../context/UiContext/UiContext";
 import * as actions from "../../context/actions";
 
 const Header: React.FC = () => {
-  const { UiState, dispatch } = useContext(UiStore);
+  const { uiDispatch } = useContext(UiStore);
 
   return (
     <header>
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
             <div
               className="p-2 cursor-pointer"
               onClick={() => {
-                dispatch(actions.toggleShowAddHabitOverlay(true, null));
+                uiDispatch(actions.toggleShowAddHabitOverlay(true, null));
               }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

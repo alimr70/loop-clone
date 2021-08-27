@@ -41,5 +41,6 @@ export interface ActionType {
     date?: string;
     show?: boolean;
     id?: string|null;
+    title?: string;
   };
 }

@@ -1,4 +1,4 @@
-import { ActionType, DataStateType } from "../../interfaces";
+import { ActionType, DataStateType, HabitInterface } from "../../interfaces";
 
 const checkWorkDayCell = (state: DataStateType, habitId: string, cellDate: string) => {
   const foundHabit = state.habitsData.find(habit => habit.id === habitId);
@@ -7,7 +7,6 @@ const checkWorkDayCell = (state: DataStateType, habitId: string, cellDate: strin
 
   foundHabit!.doneDates.push(cellDate);
 
-  // newHabitsData.push(foundHabit!);
   newHabitsData.splice(index, 0, foundHabit!);
   let newState = {...state, habitsData:newHabitsData}
   return newState;
@@ -20,9 +19,20 @@ const unCheckWorkDayCell = (state: DataStateType, habitId: string, cellDate: str
 
   foundHabit!.doneDates.splice(foundHabit!.doneDates.indexOf(cellDate),1);
 
-  // newHabitsData.push(foundHabit!);
   newHabitsData.splice(index, 0, foundHabit!);
   let newState = {...state, habitsData:newHabitsData}
+  return newState;
+}
+
+const addHabit = (state: DataStateType, id: string, title: string) => {
+  const newHabit: HabitInterface = {
+    id,
+    title,
+    doneDates:[]
+  }
+  
+  let newState = {...state, habitsData: [...state.habitsData, newHabit]};
+  
   return newState;
 }
 
@@ -33,6 +43,9 @@ const DataReducer = (state: DataStateType, action: ActionType): DataStateType =>
 
     case "UNCHECK_WORKDAY_CELL":
     return unCheckWorkDayCell(state, action.payload.habitId!, action.payload.date!);
+
+    case "ADD_HABIT":
+      return addHabit(state, action.payload.id!, action.payload.title!);
 
     default:
       return state;

@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                                DATA ACTIONS                                */
+/* -------------------------------------------------------------------------- */
+
 export const checkWorkDayCell = (habitId: string, date: string) => {
   return {
     type: "CHECK_WORKDAY_CELL",
@@ -11,6 +15,20 @@ export const unCheckWorkDayCell = (habitId: string, date: string) => {
     payload: { habitId, date },
   };
 }
+
+export const addHabit = (id: string, title: string) => {
+  return {
+    type: "ADD_HABIT",
+    payload: {
+      id,
+      title
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 UI ACTIONS                                 */
+/* -------------------------------------------------------------------------- */
 
 export const toggleShowAddHabitOverlay = (show: boolean, id: string | null) => {
   return {
