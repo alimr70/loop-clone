@@ -1,8 +1,15 @@
 import React, { useContext } from "react";
 import { DataStore } from "../../context/DataContext/DataContext";
-import { HabitInterface } from "../../interfaces";
-import { HabitTitle } from "../utils & smaller components ";
+import { HabitInterface, HabitTitleProps } from "../../interfaces";
 import CellsGenerator from "./CellsGenerator";
+
+export const HabitTitle: React.FC<HabitTitleProps> = ({ title }) => {
+  return (
+    <div className="h-12 my-1 bg-gray-700 flex justify-center items-center">
+      {title}
+    </div>
+  );
+};
 
 const MainLayout:React.FC = () => {
   const {DataState} = useContext(DataStore);
