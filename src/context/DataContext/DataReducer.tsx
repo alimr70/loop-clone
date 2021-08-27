@@ -26,12 +26,12 @@ const unCheckWorkDayCell = (state: DataStateType, habitId: string, cellDate: str
   return newState;
 }
 
-const reducer = (state: DataStateType, action: ActionType): DataStateType => {
+const DataReducer = (state: DataStateType, action: ActionType): DataStateType => {
   switch (action.type) {
-    case "checkWorkDayCell":
+    case "CHECK_WORKDAY_CELL":
       return checkWorkDayCell(state, action.payload.habitId!, action.payload.date!);
 
-    case "unCheckWorkDayCell":
+    case "UNCHECK_WORKDAY_CELL":
     return unCheckWorkDayCell(state, action.payload.habitId!, action.payload.date!);
 
     default:
@@ -39,4 +39,4 @@ const reducer = (state: DataStateType, action: ActionType): DataStateType => {
   }
 };
 
-export default reducer;
+export default DataReducer;

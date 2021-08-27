@@ -27,10 +27,19 @@ export type DataStateType = {
   }[];
 };
 
+export interface UiStateInterface {
+  showAddHabitOverlay: {
+      show: boolean;
+      id: null | string;
+  };
+}
+
 export interface ActionType {
   type: string;
   payload: {
     habitId?: string;
     date?: string;
+    show?: boolean;
+    id?: string|null;
   };
 }

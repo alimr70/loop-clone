@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import { DataStateType } from "../../interfaces";
 
-import reducer from "./reducer";
+import DataReducer from "./DataReducer";
 
 const initialState: DataStateType = {
   habitsData:[
@@ -33,7 +33,7 @@ const isDataSaved = PersistedState ? JSON.parse(PersistedState) : initialState;
 export const DataStore = createContext(isDataSaved);
 
 export const DataContext: React.FC = ({ children }) => {
-  const [DataState, dispatch] = useReducer(reducer, isDataSaved);
+  const [DataState, dispatch] = useReducer(DataReducer, isDataSaved);
 
   useEffect(() => {
     localStorage.setItem("loopState", JSON.stringify(DataState));

@@ -15,6 +15,7 @@ const MainLayout:React.FC = () => {
   const {DataState} = useContext(DataStore);
 
   return (
+    <>
     <div className="h-5/6 flex justify-center text-gray-300 font-semibold">
       <div className="w-full max-w-xl max-h-screen bg-gray-800 grid grid-cols-12">
         {/* Habits Col / Left Section */}
@@ -43,6 +44,7 @@ const MainLayout:React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
