@@ -5,24 +5,6 @@ import DataReducer from "./DataReducer";
 
 const initialState: DataStateType = {
   habitsData:[
-    {
-      id: "sadf-sdfg-sfg",
-      title: "ورد استغفار",
-      doneDates: [
-      ],
-    },
-    {
-      id: "sadf-sdfg-sfghh",
-      title: "ورد الصلاة على النبي",
-      doneDates: [
-      ],
-    },
-    {
-      id: "sadf-sdf",
-      title: "ورد التوحيد",
-      doneDates: [
-      ],
-    },
   ],
 };
 

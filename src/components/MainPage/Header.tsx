@@ -56,9 +56,15 @@ const NormalHeader: React.FC = () => {
 };
 
 const SelctedHabitHeader: React.FC = () => {
+  const {uiDispatch} = useContext(UiStore);
+
   return (
     <div className="w-full max-w-xl py-2 bg-gray-600 flex items-center justify-between">
-      <div className="ml-2">
+      <div className="ml-2 p-2 cursor-pointer"
+        onClick = {()=> {
+          uiDispatch(actions.toggleHabitFocus(false, null, null));
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-gray-300"
@@ -73,7 +79,11 @@ const SelctedHabitHeader: React.FC = () => {
       </div>
 
       <div className="flex items-center">
-        <div className="p-2 cursor-pointer">
+        <div className="p-2 cursor-pointer"
+          onClick = {() => {
+            uiDispatch(actions.toggleShowAddHabitOverlay(true, null));
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-gray-300"

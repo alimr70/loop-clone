@@ -4,8 +4,8 @@ const toggleShowAddHabitOverlay = (state:UiStateInterface, show:boolean, id:stri
   return {...state, showAddHabitOverlay: {show, id}}
 }
 
-const toggleHabitFocus = (state:UiStateInterface, focus:boolean, id:string|null) => {
-  return {...state, selectedHabitFocus: {focus, id}}
+const toggleHabitFocus = (state:UiStateInterface, focus:boolean, id:string|null, title:string|null) => {
+  return {...state, selectedHabitFocus: {focus, id, title}}
 }
 
 const UiReducer = (state: UiStateInterface, action: ActionType): UiStateInterface => {
@@ -14,7 +14,7 @@ const UiReducer = (state: UiStateInterface, action: ActionType): UiStateInterfac
       return toggleShowAddHabitOverlay(state, action.payload.show!, action.payload.id!);
 
     case "TOGGLE_HABIT_FOCUS":
-      return toggleHabitFocus(state, action.payload.focus!, action.payload.id!);
+      return toggleHabitFocus(state, action.payload.focus!, action.payload.id!, action.payload.title!);
 
     default:
       return state;

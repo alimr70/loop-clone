@@ -26,6 +26,16 @@ export const addHabit = (id: string, title: string) => {
   }
 }
 
+export const editHabit = (id: string, title: string) => {
+  return {
+    type: "EDIT_HABIT",
+    payload: {
+      id,
+      title
+    }
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 UI ACTIONS                                 */
 /* -------------------------------------------------------------------------- */
@@ -40,12 +50,13 @@ export const toggleShowAddHabitOverlay = (show: boolean, id: string | null) => {
   }
 }
 
-export const toggleHabitFocus = (focus: boolean, id: string | null) => {
+export const toggleHabitFocus = (focus: boolean, id: string | null, title: string | null) => {
   return {
     type: "TOGGLE_HABIT_FOCUS",
     payload: {
       focus,
-      id
+      id,
+      title
     }
   }
 }

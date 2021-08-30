@@ -12,6 +12,7 @@ const initialState: UiStateInterface = {
   selectedHabitFocus:{
     focus: false,
     id: null,
+    title: null,
   }
 };
 

@@ -36,6 +36,18 @@ const addHabit = (state: DataStateType, id: string, title: string) => {
   return newState;
 }
 
+const editHabit = (state: DataStateType, id: string, title: string) => {
+  const foundHabit = state.habitsData.find(habit => habit.id === id);
+  let index = state.habitsData.indexOf(foundHabit!);
+  let newHabitsData = state.habitsData.filter(habit => habit.id !== foundHabit!.id);
+
+  let newHabit = {...foundHabit!, title}; 
+
+  newHabitsData.splice(index, 0, newHabit);
+  let newState = {...state, habitsData:newHabitsData}
+  return newState;
+}
+
 const DataReducer = (state: DataStateType, action: ActionType): DataStateType => {
   switch (action.type) {
     case "CHECK_WORKDAY_CELL":
@@ -46,6 +58,9 @@ const DataReducer = (state: DataStateType, action: ActionType): DataStateType =>
 
     case "ADD_HABIT":
       return addHabit(state, action.payload.id!, action.payload.title!);
+
+    case "EDIT_HABIT":
+      return editHabit(state, action.payload.id!, action.payload.title!);
 
     default:
       return state;

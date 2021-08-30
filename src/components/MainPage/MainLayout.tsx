@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useEffect } from "react";
+import React, { useCallback, useContext, useRef} from "react";
 import { DataStore } from "../../context/DataContext/DataContext";
 import { UiStore } from "../../context/UiContext/UiContext";
 import * as actions from "../../context/actions";
@@ -19,26 +19,26 @@ export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId }) => {
 
   const start = useCallback(() => {
     timeout.current = setTimeout(() => {
-      uiDispatch(actions.toggleHabitFocus(true, habitId));
+      uiDispatch(actions.toggleHabitFocus(true, habitId, title));
     }, 500);
-  }, [uiDispatch, habitId]);
+  }, [uiDispatch, habitId, title]);
 
   const clear = useCallback(() => {
     timeout.current && clearTimeout(timeout.current);
   }, []);
 
   // Check if user clicke outside of the habit
-  useEffect(() => {
-    const handler = () => {
-        uiDispatch(actions.toggleHabitFocus(false, null));
-    };
+  // useEffect(() => {
+  //   const handler = () => {
+  //       uiDispatch(actions.toggleHabitFocus(false, null, null));
+  //   };
 
-    document.addEventListener("mousedown", handler);
+  //   document.addEventListener("mousedown", handler);
 
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, [uiDispatch]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handler);
+  //   };
+  // }, [uiDispatch]);
 
   return (
     <div

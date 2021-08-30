@@ -10,11 +10,13 @@ const AddHabit = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const {dataDispatch} = useContext(DataStore);
   const { UiState, uiDispatch } = useContext(UiStore);
-  const { showAddHabitOverlay } = UiState;
+  const { showAddHabitOverlay, selectedHabitFocus } = UiState;
   const [projectTitle, setProjectTitle] = useState("");
 
   const showOrNot = showAddHabitOverlay.show ? "" : "hidden";
   const hasId = showAddHabitOverlay.id ? showAddHabitOverlay.id : nanoid();
+  const addOrEdit = selectedHabitFocus.id ? "Edit" : "Add";
+  
   return (
     <div
       className={`${showOrNot} absolute w-full h-full bg-black bg-opacity-70 flex items-center justify-center`}
@@ -26,12 +28,13 @@ const AddHabit = () => {
         }
       }}>
       <div className="bg-gray-800 p-5 rounded-md flex items-center justify-center flex-col">
-        <p className="my-2">Add New Habit</p>
+        <p className="my-2 text-gray-100">{addOrEdit} Habit</p>
         <input
-          className="my-1"
+          className="my-1 p-1 rounded-md"
           type="text"
           name="addProject"
           id="addProcject"
+          placeholder={selectedHabitFocus.title}
           value={projectTitle}
           onChange={(e) => {
             setProjectTitle(e.target.value);
@@ -41,12 +44,16 @@ const AddHabit = () => {
           className="bg-green-500 text-gray-100 my-2 px-2 rounded-md"
           onClick={() => {
             if (/\S/.test(projectTitle)) {
-              dataDispatch(actions.addHabit(hasId, projectTitle));
+              if(addOrEdit === "Edit"){
+                dataDispatch(actions.editHabit(selectedHabitFocus.id, projectTitle));
+              } else {
+                dataDispatch(actions.addHabit(hasId, projectTitle));
+            }
             }
             setProjectTitle("");
             uiDispatch(actions.toggleShowAddHabitOverlay(false, null));
           }}>
-          Add
+          {addOrEdit}
         </button>
       </div>
     </div>

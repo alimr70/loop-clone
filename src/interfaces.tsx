@@ -36,6 +36,7 @@ export interface UiStateInterface {
   selectedHabitFocus: {
       focus: boolean;
       id: string | null;
+      title: string | null;
   };
 }
 
