@@ -28,9 +28,14 @@ export type DataStateType = {
 };
 
 export interface UiStateInterface {
+  theme: "dark" | "light";
   showAddHabitOverlay: {
       show: boolean;
-      id: null | string;
+      id: string | null;
+  };
+  selectedHabitFocus: {
+      focus: boolean;
+      id: string | null;
   };
 }
 
@@ -40,6 +45,7 @@ export interface ActionType {
     habitId?: string;
     date?: string;
     show?: boolean;
+    focus?: boolean;
     id?: string|null;
     title?: string;
   };

@@ -3,6 +3,7 @@ import { DataStore } from "../../context/DataContext/DataContext";
 import * as actions from "../../context/actions";
 import {generate30Days} from "../utils & smaller components ";
 import { DayCellProps, HabitInterface, WorkDayCellProps } from "../../interfaces";
+import { UiStore } from "../../context/UiContext/UiContext";
 
 export const DayCell: React.FC<DayCellProps> = ({ date }) => {
   return (
@@ -15,15 +16,15 @@ export const DayCell: React.FC<DayCellProps> = ({ date }) => {
 };
 
 export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, done }) => {
-  const {dispatch} = useContext(DataStore);
+  const {dataDispatch} = useContext(DataStore);
 
   return (
     <span
       className="w-12 flex items-center justify-center cursor-pointer"
       onClick={() => {
         done
-          ?dispatch(actions.unCheckWorkDayCell(habitId,cellDate))
-          :dispatch(actions.checkWorkDayCell(habitId,cellDate));
+          ?dataDispatch(actions.unCheckWorkDayCell(habitId,cellDate))
+          :dataDispatch(actions.checkWorkDayCell(habitId,cellDate));
       }}>
       {done ? (
         <svg
@@ -56,6 +57,9 @@ export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, don
 
 const CellsGenerator: React.FC = () => {
   const { DataState } = useContext(DataStore);
+  
+  const {UiState} = useContext(UiStore);
+  const {selectedHabitFocus} = UiState;
 
   let days = generate30Days(new Date().setHours(0, 0, 0, 0));
 
@@ -70,8 +74,11 @@ const CellsGenerator: React.FC = () => {
       </div>
 
       {DataState.habitsData.map((habit: HabitInterface) => {
+        const isFocused = selectedHabitFocus.focus && selectedHabitFocus.id === habit.id
+        ? "bg-gray-600 border-4 border-l-0 border-gray-500"
+        : "bg-gray-700";
         return (
-          <div key={habit.id} className="w-full h-12 my-1 bg-gray-700 flex">
+          <div key={habit.id} className={`w-full h-12 my-1 ${isFocused} flex`}>
             {days.map((day) => (
               <WorkDayCell
                 habitId={habit.id}

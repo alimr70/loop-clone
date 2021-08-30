@@ -1,6 +1,6 @@
 import MainPage from "./components/MainPage/MainPage";
 import { DataContext } from "./context/DataContext/DataContext";
-import { UiContext } from "./context/UiContext/UiContext";
+import { UiContext} from "./context/UiContext/UiContext"; 
 
 function App() {
   return (

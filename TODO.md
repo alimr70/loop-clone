@@ -7,4 +7,7 @@
 - ✅ Setup Data Context
 - ✅ Dynamically create days
 - ✅ Dynamically create work day cells
-- ❌ Make Create Habit window
+- ✅ Make Create Habit window
+- ✅ Make habit cell focus functionality
+- ❌ Make habit cell color change functionality
+- ❌ Make habit cell title edit functionality

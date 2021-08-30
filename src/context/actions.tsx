@@ -39,3 +39,13 @@ export const toggleShowAddHabitOverlay = (show: boolean, id: string | null) => {
     }
   }
 }
+
+export const toggleHabitFocus = (focus: boolean, id: string | null) => {
+  return {
+    type: "TOGGLE_HABIT_FOCUS",
+    payload: {
+      focus,
+      id
+    }
+  }
+}
