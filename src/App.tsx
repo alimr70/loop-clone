@@ -1,4 +1,4 @@
-import MainPage from "./components/MainPage/MainPage";
+import Habits from "./components/MainPage/Habits";
 import { DataContext } from "./context/DataContext/DataContext";
 import { UiContext} from "./context/UiContext/UiContext"; 
 
@@ -7,7 +7,7 @@ function App() {
     <UiContext>
     <DataContext>
       <div className="App mx-1 relative">
-        <MainPage />
+        <Habits />
       </div>
     </DataContext>
     </UiContext>

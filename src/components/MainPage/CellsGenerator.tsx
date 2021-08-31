@@ -15,7 +15,7 @@ export const DayCell: React.FC<DayCellProps> = ({ date }) => {
   );
 };
 
-export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, done }) => {
+export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, done, color }) => {
   const {dataDispatch} = useContext(DataStore);
 
   return (
@@ -29,7 +29,7 @@ export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, don
       {done ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className={`h-5 w-5 text-${color}`}
           viewBox="0 0 20 20"
           fill="currentColor">
           <path
@@ -41,7 +41,7 @@ export const WorkDayCell: React.FC<WorkDayCellProps> = ({ habitId, cellDate, don
       ) : (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className={`h-5 w-5 text-${color}`}
           viewBox="0 0 20 20"
           fill="currentColor">
           <path
@@ -86,6 +86,7 @@ const CellsGenerator: React.FC = () => {
                   habit.doneDates.find((date) => date === day) ? true : false
                 }
                 cellDate={day}
+                color={habit.color}
                 key={day}
               />
             ))}

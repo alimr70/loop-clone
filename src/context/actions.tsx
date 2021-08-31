@@ -2,6 +2,8 @@
 /*                                DATA ACTIONS                                */
 /* -------------------------------------------------------------------------- */
 
+import { ColorType } from "../interfaces";
+
 export const checkWorkDayCell = (habitId: string, date: string) => {
   return {
     type: "CHECK_WORKDAY_CELL",
@@ -26,12 +28,13 @@ export const addHabit = (id: string, title: string) => {
   }
 }
 
-export const editHabit = (id: string, title: string) => {
+export const editHabit = (id: string, title?: string, color?: ColorType) => {
   return {
     type: "EDIT_HABIT",
     payload: {
       id,
-      title
+      title,
+      color
     }
   }
 }
@@ -40,12 +43,13 @@ export const editHabit = (id: string, title: string) => {
 /*                                 UI ACTIONS                                 */
 /* -------------------------------------------------------------------------- */
 
-export const toggleShowAddHabitOverlay = (show: boolean, id: string | null) => {
+export const toggleShowOverlay = (show: boolean, id: string | null, overlayType:"edit" | "color" | null) => {
   return {
-    type: "TOGGLE_SHOW_ADD_HABIT_OVERLAY",
+    type: "TOGGLE_SHOW_OVERLAY",
     payload: {
       show,
-      id
+      id,
+      overlayType
     }
   }
 }

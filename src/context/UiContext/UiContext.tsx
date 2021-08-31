@@ -5,9 +5,10 @@ import UiReducer from "./UiReducer";
 
 const initialState: UiStateInterface = {
   theme: "dark",
-  showAddHabitOverlay: {
+  showOverlay: {
     show: false,
     id: null,
+    type: null,
   },
   selectedHabitFocus:{
     focus: false,

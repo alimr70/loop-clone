@@ -5,7 +5,7 @@ import * as actions from "../../context/actions";
 import { HabitInterface, HabitTitleProps } from "../../interfaces";
 import CellsGenerator from "./CellsGenerator";
 
-export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId }) => {
+export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId, color }) => {
   const { UiState, uiDispatch } = useContext(UiStore);
   const { selectedHabitFocus } = UiState;
 
@@ -43,7 +43,7 @@ export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId }) => {
   return (
     <div
       ref={target}
-      className={`h-12 my-1 ${isFocused} flex justify-center items-center cursor-pointer`}
+      className={`h-12 my-1 ${isFocused} text-${color} flex justify-center items-center cursor-pointer`}
       onMouseDown={() => start()}
       onMouseUp={() => clear()}
       onMouseLeave={() => clear()}
@@ -72,6 +72,7 @@ const MainLayout: React.FC = () => {
                   key={habit.id}
                   title={habit.title}
                   habitId={habit.id}
+                  color={habit.color}
                 />
               );
             })}

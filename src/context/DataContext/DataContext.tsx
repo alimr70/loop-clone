@@ -4,7 +4,25 @@ import { DataStateType } from "../../interfaces";
 import DataReducer from "./DataReducer";
 
 const initialState: DataStateType = {
-  habitsData:[
+  habitsData: [
+    {
+      id: "ZpZjSYVRwk6Kdml9MSO9D",
+      title: "Welcome To Habits Clone",
+      color: "gray-300",
+      doneDates: [],
+    },
+    {
+      id: "gJFLO8E-3tidxzZFTdfgw",
+      title: "Where You Can Create Habits",
+      color: "gray-300",
+      doneDates: [],
+    },
+    {
+      id: "RKTg_A6xvgHZ7EIuklUxd",
+      title: "And Track Your Progress",
+      color: "gray-300",
+      doneDates: [],
+    },
   ],
 };
 
@@ -22,6 +40,8 @@ export const DataContext: React.FC = ({ children }) => {
   }, [DataState]);
 
   return (
-    <DataStore.Provider value={{ DataState, dataDispatch }}>{children}</DataStore.Provider>
+    <DataStore.Provider value={{ DataState, dataDispatch }}>
+      {children}
+    </DataStore.Provider>
   );
 };
