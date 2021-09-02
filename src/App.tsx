@@ -6,7 +6,7 @@ function App() {
   return (
     <UiContext>
     <DataContext>
-      <div className="App mx-1 relative">
+      <div className="App mx-1">
         <Habits />
       </div>
     </DataContext>

@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { UiStore } from "../../context/UiContext/UiContext";
 import * as actions from "../../context/actions";
-import { Icon } from "../utils & smaller components ";
+import { Icon, MenuBtn, MenuItem } from "../utils & smaller components ";
+import { DataStore } from "../../context/DataContext/DataContext";
 
 const Header: React.FC = () => {
   const { UiState } = useContext(UiStore);
@@ -32,12 +33,13 @@ const NormalHeader: React.FC = () => {
         </div>
 
         <div className="p-2 cursor-pointer">
-        <Icon iconName="filter" />
+          <Icon iconName="filter" />
         </div>
 
-        <div className="p-2 cursor-pointer">
-        <Icon iconName="menu" />
-        </div>
+        <MenuBtn>
+          <MenuItem title="Dark theme" onClickFn={()=>{return;}} />
+          <MenuItem title="Settings" onClickFn={()=>{return;}} />
+        </MenuBtn>
       </div>
     </div>
   );
@@ -45,6 +47,12 @@ const NormalHeader: React.FC = () => {
 
 const SelctedHabitHeader: React.FC = () => {
   const { UiState, uiDispatch } = useContext(UiStore);
+  const {dataDispatch} = useContext(DataStore);
+
+  const deleteHabit = () => {
+    dataDispatch(actions.deleteHabit(UiState.selectedHabitFocus.id));
+    uiDispatch(actions.toggleHabitFocus(false, null, null));
+  }
 
   return (
     <div className="w-full max-w-xl py-2 bg-gray-600 flex items-center justify-between">
@@ -65,16 +73,24 @@ const SelctedHabitHeader: React.FC = () => {
           <Icon iconName="edit" />
         </div>
 
-        <div className="p-2 cursor-pointer"
+        <div
+          className="p-2 cursor-pointer"
           onClick={() => {
-            uiDispatch(actions.toggleShowOverlay(true, UiState.selectedHabitFocus.id, "color"));
+            uiDispatch(
+              actions.toggleShowOverlay(
+                true,
+                UiState.selectedHabitFocus.id,
+                "color"
+              )
+            );
           }}>
-        <Icon iconName="color" />
+          <Icon iconName="color" />
         </div>
 
-        <div className="p-2 cursor-pointer">
-        <Icon iconName="menu" />
-        </div>
+        <MenuBtn>
+          <MenuItem title="Delete Habit" onClickFn={deleteHabit} />
+          <MenuItem title="Archive Habit" onClickFn={()=>{return;}} />
+        </MenuBtn>
       </div>
     </div>
   );

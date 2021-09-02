@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 export type ColorType = "gray-300"
 | "red-400"
 | "yellow-400"
@@ -23,6 +25,15 @@ export interface HabitTitleProps {
 
 export interface DayCellProps {
   date: string;
+}
+
+export interface MenuProps {
+  parent: React.RefObject<HTMLDivElement>;
+}
+
+export interface MenuItemProps {
+  title: string;
+  onClickFn: MouseEventHandler<HTMLDivElement>;
 }
 
 export interface HabitInterface {

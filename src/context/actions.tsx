@@ -39,6 +39,15 @@ export const editHabit = (id: string, title?: string, color?: ColorType) => {
   }
 }
 
+export const deleteHabit = (habitId: string) => {
+  return {
+    type: "DELETE_HABIT",
+    payload: {
+      habitId
+    }
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 UI ACTIONS                                 */
 /* -------------------------------------------------------------------------- */

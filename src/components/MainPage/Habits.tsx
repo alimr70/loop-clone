@@ -27,7 +27,7 @@ const Overlay = () => {
   
   return (
     <div
-      className={`${showOrNot} absolute w-full h-full bg-black bg-opacity-70 flex items-center justify-center`}
+      className={`${showOrNot} top-0 left-0 absolute w-full h-full bg-black bg-opacity-70 flex items-center justify-center`}
       // id="bg"
       ref={bgRef}
       onClick={(e): void => {

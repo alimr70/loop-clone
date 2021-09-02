@@ -75,6 +75,16 @@ const editHabit = (
   return newState;
 };
 
+const deleteHabit = (state: DataStateType, habitId: string) => {
+  const foundHabit = state.habitsData.find((habit) => habit.id === habitId);
+  let newHabitsData = state.habitsData.filter(
+    (habit) => habit.id !== foundHabit!.id
+  );
+
+  let newState = { ...state, habitsData: newHabitsData };
+  return newState;
+}
+
 const DataReducer = (
   state: DataStateType,
   action: ActionType
@@ -104,6 +114,9 @@ const DataReducer = (
         action.payload.title!,
         action.payload.color!
       );
+
+    case "DELETE_HABIT":
+      return deleteHabit(state, action.payload.habitId!);
 
     default:
       return state;

@@ -1,3 +1,6 @@
+import { useRef, useState } from "react";
+import { MenuItemProps, MenuProps } from "../interfaces";
+
 // export const sortDates = (dates: string[]) => {
 //   let datesTimes = dates.map((el) => {
 //     return new Date(el).getTime();
@@ -118,3 +121,40 @@ export const Icon: React.FC<{ iconName: string }> = ({ iconName }) => {
   return <>{icons[iconName]}</>;
 };
 
+export const Menu: React.FC<MenuProps> = ({parent, children}) => {
+  let parentPosition = parent.current?.getBoundingClientRect();
+  return (
+    <div style={{top: parentPosition?.bottom, right: document.documentElement.offsetWidth - parentPosition?.right!}} className="absolute bg-gray-500 text-gray-300 rounded-md flex items-start justify-center flex-col">
+      {children}
+    </div>
+  );
+}
+
+export const MenuItem: React.FC<MenuItemProps> = ({title, onClickFn}) => {
+  return (
+    <div
+      className="w-full p-2 rounded-md cursor-pointer hover:bg-gray-400"
+      onClick={onClickFn}>
+      {title}
+    </div>
+  );
+}
+
+export const MenuBtn: React.FC = ({children}) => {
+  const MenuParent = useRef<HTMLDivElement>(null);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  return (
+    <>
+      <div
+        ref={MenuParent}
+        className="p-2 cursor-pointer"
+        onClick={() => setOpenMenu(!openMenu)}>
+        <Icon iconName="menu" />
+      </div>
+      {openMenu ? <Menu parent={MenuParent}>
+        {children}
+      </Menu> : ""}
+    </>
+  );
+};
