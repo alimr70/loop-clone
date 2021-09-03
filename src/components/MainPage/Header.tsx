@@ -18,7 +18,16 @@ const Header: React.FC = () => {
 };
 
 const NormalHeader: React.FC = () => {
-  const { uiDispatch } = useContext(UiStore);
+  const { UiState, uiDispatch } = useContext(UiStore);
+
+  const hideCompleted = () => {
+    uiDispatch(actions.toggleHideCompleted());
+  }
+
+  const hideArchived = () => {
+    uiDispatch(actions.toggleHideArchived());
+  }
+
   return (
     <div className="w-full max-w-xl my-2 flex items-center justify-between">
       <h2 className="ml-2 text-2xl font-bold text-gray-300">Habits</h2>
@@ -32,11 +41,16 @@ const NormalHeader: React.FC = () => {
           <Icon iconName="plus" />
         </div>
 
-        <div className="p-2 cursor-pointer">
-          <Icon iconName="filter" />
-        </div>
+        <MenuBtn iconName="filter">
+          <MenuItem title="Hide Completed" onClickFn={hideCompleted}>
+            <input type="checkbox" name="hideCompleted" id="hideCompleted" checked={UiState.hideCompleted} />
+          </MenuItem>
+          <MenuItem title="Hide Archived" onClickFn={hideArchived}>
+            <input type="checkbox" name="hideCompleted" id="hideCompleted" checked={UiState.hideArchived} />
+          </MenuItem>
+        </MenuBtn>
 
-        <MenuBtn>
+        <MenuBtn iconName="menu">
           <MenuItem title="Dark theme" onClickFn={()=>{return;}} />
           <MenuItem title="Settings" onClickFn={()=>{return;}} />
         </MenuBtn>
@@ -87,7 +101,7 @@ const SelctedHabitHeader: React.FC = () => {
           <Icon iconName="color" />
         </div>
 
-        <MenuBtn>
+        <MenuBtn iconName="menu">
           <MenuItem title="Delete Habit" onClickFn={deleteHabit} />
           <MenuItem title="Archive Habit" onClickFn={()=>{return;}} />
         </MenuBtn>

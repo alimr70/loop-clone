@@ -130,17 +130,18 @@ export const Menu: React.FC<MenuProps> = ({parent, children}) => {
   );
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({title, onClickFn}) => {
+export const MenuItem: React.FC<MenuItemProps> = ({title, onClickFn, children}) => {
   return (
     <div
-      className="w-full p-2 rounded-md cursor-pointer hover:bg-gray-400"
+      className="w-full flex p-2 rounded-md cursor-pointer hover:bg-gray-400"
       onClick={onClickFn}>
-      {title}
+        {children}
+        <p>&nbsp;{title}</p>
     </div>
   );
 }
 
-export const MenuBtn: React.FC = ({children}) => {
+export const MenuBtn: React.FC<{iconName: string}> = ({children, iconName}) => {
   const MenuParent = useRef<HTMLDivElement>(null);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -150,7 +151,7 @@ export const MenuBtn: React.FC = ({children}) => {
         ref={MenuParent}
         className="p-2 cursor-pointer"
         onClick={() => setOpenMenu(!openMenu)}>
-        <Icon iconName="menu" />
+        <Icon iconName={iconName} />
       </div>
       {openMenu ? <Menu parent={MenuParent}>
         {children}

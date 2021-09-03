@@ -61,19 +61,18 @@ const CellsGenerator: React.FC = () => {
   const {UiState} = useContext(UiStore);
   const {selectedHabitFocus} = UiState;
 
+  const todaysDate = new Date().toDateString();
+
   let days = generate30Days(new Date().setHours(0, 0, 0, 0));
 
   return (
     <>
       <div className="w-full h-12 my-1 bg-gray-800 flex">
-        {days.map((day,index) => (
-          days.length === index + 1
-            ? <DayCell date={day} key={day} />
-            : <DayCell date={day} key={day} />
-        ))}
+        {days.map((day) => <DayCell date={day} key={day} />)}
       </div>
 
       {DataState.habitsData.map((habit: HabitInterface) => {
+        if(habit.doneDates.includes(todaysDate) && UiState.hideCompleted)return null;
         const isFocused = selectedHabitFocus.focus && selectedHabitFocus.id === habit.id
         ? "bg-gray-600 border-4 border-l-0 border-gray-500"
         : "bg-gray-700";

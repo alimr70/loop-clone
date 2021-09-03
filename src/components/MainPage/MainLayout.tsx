@@ -27,19 +27,6 @@ export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId, color })
     timeout.current && clearTimeout(timeout.current);
   }, []);
 
-  // Check if user clicke outside of the habit
-  // useEffect(() => {
-  //   const handler = () => {
-  //       uiDispatch(actions.toggleHabitFocus(false, null, null));
-  //   };
-
-  //   document.addEventListener("mousedown", handler);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handler);
-  //   };
-  // }, [uiDispatch]);
-
   return (
     <div
       ref={target}
@@ -56,17 +43,21 @@ export const HabitTitle: React.FC<HabitTitleProps> = ({ title, habitId, color })
 
 const MainLayout: React.FC = () => {
   const { DataState } = useContext(DataStore);
+  const { UiState } = useContext(UiStore);
+
+  const todaysDate = new Date().toDateString();
 
   return (
     <>
-      <div className="h-5/6 flex justify-center text-gray-300 font-semibold">
-        <div className="w-full max-w-xl max-h-screen bg-gray-800 grid grid-cols-12">
+      <div className="flex-auto flex justify-center text-gray-300 font-semibold">
+        <div className="w-full max-w-xl bg-gray-800 flex-auto grid grid-cols-12">
           {/* Habits Col / Left Section */}
           <div className="col-span-4">
             <div className="h-12 my-1 bg-gray-800 flex justify-center items-center">
               &nbsp;
             </div>
             {DataState.habitsData.map((habit: HabitInterface) => {
+              if(habit.doneDates.includes(todaysDate) && UiState.hideCompleted)return null;
               return (
                 <HabitTitle
                   key={habit.id}
@@ -82,12 +73,9 @@ const MainLayout: React.FC = () => {
           <div className="col-span-8">
             <div className="grid grid-rows-6 overflow-auto">
               {/* Dates row */}
-              <div className="row-span-1">
+              <div className="row-span-full">
                 <CellsGenerator />
               </div>
-
-              {/* Checkboxs side */}
-              <div className="row-span-full"></div>
             </div>
           </div>
         </div>

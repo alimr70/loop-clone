@@ -59,6 +59,8 @@ export interface UiStateInterface {
       id: string | null;
       title: string | null;
   };
+  hideCompleted: boolean;
+  hideArchived: boolean;
 }
 
 export interface ActionType {
@@ -72,5 +74,6 @@ export interface ActionType {
     id?: string|null;
     title?: string;
     color?: ColorType;
+    completedOrArchived?: "completed" | "archived";
   };
 }

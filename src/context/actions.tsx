@@ -73,3 +73,17 @@ export const toggleHabitFocus = (focus: boolean, id: string | null, title: strin
     }
   }
 }
+
+export const toggleHideCompleted = () => {
+  console.log("TOGGLE_HIDE_COMPLETED");
+  return {
+    type: "TOGGLE_HIDE_COMPLETED"
+  }
+}
+
+export const toggleHideArchived = () => {
+  console.log("TOGGLE_HIDE_ARCHIVED");
+  return {
+    type: "TOGGLE_HIDE_ARCHIVED"
+  }
+}

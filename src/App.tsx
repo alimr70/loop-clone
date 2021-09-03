@@ -6,7 +6,7 @@ function App() {
   return (
     <UiContext>
     <DataContext>
-      <div className="App mx-1">
+      <div className="App mx-1 flex flex-col">
         <Habits />
       </div>
     </DataContext>
