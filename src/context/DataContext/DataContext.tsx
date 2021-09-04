@@ -10,18 +10,21 @@ const initialState: DataStateType = {
       title: "Welcome To Habits Clone",
       color: "gray-300",
       doneDates: [],
+      archived: false,
     },
     {
       id: "gJFLO8E-3tidxzZFTdfgw",
       title: "Where You Can Create Habits",
       color: "gray-300",
       doneDates: [],
+      archived: false,
     },
     {
       id: "RKTg_A6xvgHZ7EIuklUxd",
       title: "And Track Your Progress",
       color: "gray-300",
       doneDates: [],
+      archived: false,
     },
   ],
 };

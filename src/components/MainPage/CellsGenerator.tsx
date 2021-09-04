@@ -73,6 +73,7 @@ const CellsGenerator: React.FC = () => {
 
       {DataState.habitsData.map((habit: HabitInterface) => {
         if(habit.doneDates.includes(todaysDate) && UiState.hideCompleted)return null;
+        if(UiState.hideArchived && habit.archived)return null;
         const isFocused = selectedHabitFocus.focus && selectedHabitFocus.id === habit.id
         ? "bg-gray-600 border-4 border-l-0 border-gray-500"
         : "bg-gray-700";

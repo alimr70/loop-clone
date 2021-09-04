@@ -68,6 +68,11 @@ const SelctedHabitHeader: React.FC = () => {
     uiDispatch(actions.toggleHabitFocus(false, null, null));
   }
 
+  const archiveHabit = () => {
+    dataDispatch(actions.archiveHabit(UiState.selectedHabitFocus.id));
+    uiDispatch(actions.toggleHabitFocus(false, null, null));
+  }
+
   return (
     <div className="w-full max-w-xl py-2 bg-gray-600 flex items-center justify-between">
       <div
@@ -103,7 +108,7 @@ const SelctedHabitHeader: React.FC = () => {
 
         <MenuBtn iconName="menu">
           <MenuItem title="Delete Habit" onClickFn={deleteHabit} />
-          <MenuItem title="Archive Habit" onClickFn={()=>{return;}} />
+          <MenuItem title="Archive Habit" onClickFn={archiveHabit} />
         </MenuBtn>
       </div>
     </div>

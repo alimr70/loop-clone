@@ -41,6 +41,7 @@ export interface HabitInterface {
   title: string;
   color: ColorType;
   doneDates: string[];
+  archived: boolean;
 }
 
 export type DataStateType = {

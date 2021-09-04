@@ -14,4 +14,4 @@
 - ✅ Make delete habit functionality
 - ❌ Add sorting functionalities
 - ✅ Add hiding todays checked habit
-- ❌ Add hiding archived habit
+- ✅ Add hiding archived habit

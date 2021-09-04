@@ -58,6 +58,7 @@ const MainLayout: React.FC = () => {
             </div>
             {DataState.habitsData.map((habit: HabitInterface) => {
               if(habit.doneDates.includes(todaysDate) && UiState.hideCompleted)return null;
+              if(UiState.hideArchived && habit.archived)return null;
               return (
                 <HabitTitle
                   key={habit.id}

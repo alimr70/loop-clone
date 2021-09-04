@@ -47,6 +47,7 @@ const addHabit = (state: DataStateType, id: string, title: string) => {
     title,
     color: "gray-300",
     doneDates: [],
+    archived: false,
   };
 
   let newState = { ...state, habitsData: [...state.habitsData, newHabit] };
@@ -85,6 +86,16 @@ const deleteHabit = (state: DataStateType, habitId: string) => {
   return newState;
 }
 
+const archiveHabit = (state: DataStateType, habitId: string) => {
+  const foundHabit = state.habitsData.find((habit) => habit.id === habitId);
+  let index = state.habitsData.indexOf(foundHabit!);
+  let newHabitsData = state.habitsData.filter((habit) => habit.id !== foundHabit!.id);
+  foundHabit!.archived = !foundHabit!.archived;
+  newHabitsData.splice(index, 0, foundHabit!);
+  let newState = {...state, newHabitsData};
+  return newState;
+}
+
 const DataReducer = (
   state: DataStateType,
   action: ActionType
@@ -117,6 +128,9 @@ const DataReducer = (
 
     case "DELETE_HABIT":
       return deleteHabit(state, action.payload.habitId!);
+
+    case "ARCHIVE_HABIT":
+      return archiveHabit(state, action.payload.habitId!);
 
     default:
       return state;

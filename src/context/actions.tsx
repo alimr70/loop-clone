@@ -48,6 +48,15 @@ export const deleteHabit = (habitId: string) => {
   }
 }
 
+export const archiveHabit = (habitId: string) => {
+  return {
+    type: "ARCHIVE_HABIT",
+    payload: {
+      habitId
+    }
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 UI ACTIONS                                 */
 /* -------------------------------------------------------------------------- */
